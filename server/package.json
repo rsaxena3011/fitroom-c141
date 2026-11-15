@@ -1,0 +1,1 @@
+{"description":"FitRoom server — serves the static app and proxies try-on calls to the Clothsy AI API.","license":"MIT","main":"server.js","name":"fitroom-server","private":true,"scripts":{"start":"node server.js","test:fit":"node scripts/test-fit.mjs"},"version":"1.0.0"}

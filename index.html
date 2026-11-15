@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FitRoom — You, in the garment, before you pay</title>
+<meta name="description" content="FitRoom is a product-page virtual try-on with a fit verdict. Upload your photo, pick a garment, see yourself wearing it and know your size before you buy. Built on the Clothsy AI virtual try-on API (FabricVTON) for HackTheFashion Global'26, Try-On Commerce track.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <p class="wordmark">FitRoom</p>
+    <p class="tagline">You, in the garment, before you pay.</p>
+    <p class="track">Try-On Commerce &middot; HackTheFashion Global&rsquo;26</p>
+    <p class="mode" id="mode-badge" role="status">Checking try-on service&hellip;</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="how" aria-label="How it works">
+    <ol>
+      <li><strong>1. Pick your photo</strong><span>Use a sample shopper or upload your own.</span></li>
+      <li><strong>2. Pick a garment</strong><span>Four pieces, with real stated measurements.</span></li>
+      <li><strong>3. See it on you</strong><span>Try-on image plus a fit verdict, in seconds.</span></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="h-photo">
+    <h2 id="h-photo">1 &middot; Your photo</h2>
+    <div class="shopper-grid" id="shopper-grid"></div>
+    <div class="upload-row">
+      <label class="upload-label" for="photo-input">Or upload your own photo</label>
+      <input id="photo-input" type="file" accept="image/jpeg,image/png">
+      <span class="hint">JPEG or PNG, up to 4 MB. Full-length, facing the camera works best. Your photo is only sent when you run a live try-on.</span>
+    </div>
+    <p class="preview-line" id="photo-preview-line">No photo chosen yet.</p>
+    <img id="photo-preview" class="photo-preview" alt="" hidden>
+  </section>
+
+  <section aria-labelledby="h-garment">
+    <h2 id="h-garment">2 &middot; Pick a garment</h2>
+    <div class="garment-grid" id="garment-grid"></div>
+  </section>
+
+  <section aria-labelledby="h-size">
+    <h2 id="h-size">3 &middot; Your usual size &amp; consent</h2>
+    <div class="size-row" id="size-row" role="group" aria-label="Your usual size"></div>
+    <label class="consent">
+      <input id="consent" type="checkbox">
+      <span>I&rsquo;m 18 or over, this is a photo of me (or a sample photo), and I agree to it being processed to create a virtual try-on.</span>
+    </label>
+    <p class="hint">Try-ons are processed by the Clothsy AI virtual try-on API. Uploaded photos are kept by the service for up to 35 days, then deleted automatically.</p>
+    <button id="tryon-go" class="cta" type="button">See it on me</button>
+    <p id="tryon-status" class="status" role="status"></p>
+  </section>
+
+  <section id="result-section" aria-labelledby="h-result" hidden>
+    <h2 id="h-result">Your try-on</h2>
+    <div class="result-pair">
+      <figure>
+        <img id="result-before" alt="Your original photo">
+        <figcaption>Before — your photo</figcaption>
+      </figure>
+      <figure>
+        <img id="result-after" alt="You wearing the garment">
+        <figcaption id="result-caption">AI-generated try-on</figcaption>
+      </figure>
+    </div>
+    <p class="result-meta" id="result-meta"></p>
+    <div class="verdict" id="verdict-card">
+      <p class="verdict-headline" id="verdict-headline"></p>
+      <p class="verdict-reason" id="verdict-reason"></p>
+      <p class="verdict-numbers" id="verdict-numbers"></p>
+    </div>
+    <div class="result-actions">
+      <button id="save-look" class="btn" type="button">Save to lookbook</button>
+      <button id="try-another" class="btn btn-ghost" type="button">Try another garment</button>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-lookbook">
+    <h2 id="h-lookbook">Your shoppable lookbook</h2>
+    <p class="hint">Everything you try on lands here, with its fit verdict and price — the shortlist you actually buy from. Saved only in this browser.</p>
+    <div class="lookbook-grid" id="lookbook-grid"></div>
+    <p class="empty" id="lookbook-empty">Nothing tried on yet. Your first try-on will appear here.</p>
+  </section>
+
+  <section aria-labelledby="h-about">
+    <h2 id="h-about">How FitRoom works</h2>
+    <p>FitRoom is a product-page try-on. Your photo and the garment go to the <strong>Clothsy AI virtual try-on API</strong> (built on FabricVTON), which returns a realistic image of you wearing the garment. The fit verdict is separate from the image: it compares the garment&rsquo;s stated chest measurement in your usual size against the standard for that size, so you know before you buy whether to take your usual size, size up, or size down. Fewer wrong sizes means fewer returns — that is the retail value.</p>
+    <p>Sample shoppers Ana and Dev are AI-generated adults, made for this demo. No real person&rsquo;s photo is used without consent, and no photo of a minor is ever used. In demo mode the app shows pre-generated sample results, clearly labelled; run the included server with a Clothsy API key for live try-ons.</p>
+    <p><a href="https://github.com/rsaxena3011/fitroom-c141">Source code on GitHub</a> &middot; <a href="https://clothsyai.fabricvton.com/docs/api/custom-store">Clothsy AI docs</a></p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>FitRoom — built by Ratnesh Saxena for HackTheFashion Global&rsquo;26 (Devpost), Try-On Commerce track. Virtual try-on by the Clothsy AI API, built on FabricVTON.</p>
+  </div>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

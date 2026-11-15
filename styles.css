@@ -1,0 +1,73 @@
+/* FitRoom — plain, bright, product-page styling. No animations on imagery. */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #1c2333;
+  background: #f7f5f0;
+  line-height: 1.5;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+.site-header { background: #1c2333; color: #fff; padding: 34px 0 26px; }
+.wordmark { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin: 0; }
+.tagline { font-size: 19px; margin: 4px 0 0; color: #ffd9a8; }
+.track { margin: 10px 0 0; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #b9c2d4; }
+.mode { display: inline-block; margin: 14px 0 0; padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: #33405c; color: #fff; }
+.mode.live { background: #1e7a46; }
+.mode.demo { background: #8a6d1b; }
+main { padding-bottom: 40px; }
+h2 { font-size: 22px; margin: 34px 0 12px; }
+.how ol { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0 0; padding: 0; }
+.how li { background: #fff; border: 1px solid #e3ded2; border-radius: 12px; padding: 14px 16px; }
+.how li strong { display: block; font-size: 15px; }
+.how li span { font-size: 13px; color: #5a6478; }
+.shopper-grid, .garment-grid, .lookbook-grid { display: grid; gap: 14px; }
+.shopper-grid { grid-template-columns: repeat(2, 1fr); }
+.garment-grid { grid-template-columns: repeat(4, 1fr); }
+.lookbook-grid { grid-template-columns: repeat(4, 1fr); }
+.card { background: #fff; border: 1px solid #e3ded2; border-radius: 12px; overflow: hidden; cursor: pointer; text-align: left; padding: 0; font: inherit; color: inherit; }
+.card img { display: block; width: 100%; height: auto; }
+.card .card-body { padding: 10px 12px 12px; }
+.card .card-name { font-weight: 700; font-size: 15px; }
+.card .card-sub { font-size: 13px; color: #5a6478; }
+.card.selected { outline: 3px solid #c2410c; outline-offset: -3px; }
+.shopper-grid .card img { aspect-ratio: 1 / 2; object-fit: cover; object-position: top; }
+.garment-grid .card img { aspect-ratio: 3 / 2; object-fit: cover; }
+.upload-row { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.upload-label { font-weight: 700; }
+.hint { font-size: 13px; color: #5a6478; }
+.photo-preview { display: block; max-width: 220px; margin-top: 10px; border-radius: 10px; border: 1px solid #e3ded2; }
+.preview-line { font-size: 14px; margin: 10px 0 0; }
+.size-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.size-btn { min-width: 48px; padding: 8px 12px; border-radius: 8px; border: 1px solid #c9c2b2; background: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+.size-btn.selected { background: #1c2333; color: #fff; border-color: #1c2333; }
+.size-btn:disabled { opacity: .35; cursor: not-allowed; }
+.consent { display: flex; gap: 10px; align-items: flex-start; background: #fff; border: 1px solid #e3ded2; border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+.consent input { margin-top: 3px; width: 18px; height: 18px; }
+.cta { display: block; width: 100%; margin-top: 16px; padding: 15px; font: inherit; font-size: 18px; font-weight: 800; color: #fff; background: #c2410c; border: 0; border-radius: 12px; cursor: pointer; }
+.cta:disabled { opacity: .55; cursor: wait; }
+.status { font-size: 14px; min-height: 22px; margin: 10px 0 0; }
+.status.error { color: #b42318; font-weight: 600; }
+.result-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.result-pair figure { margin: 0; background: #fff; border: 1px solid #e3ded2; border-radius: 12px; overflow: hidden; }
+.result-pair img { display: block; width: 100%; height: auto; }
+.result-pair figcaption { padding: 10px 12px; font-size: 13px; color: #5a6478; }
+.result-meta { font-size: 13px; color: #5a6478; }
+.verdict { background: #fff; border: 1px solid #e3ded2; border-left: 6px solid #1e7a46; border-radius: 12px; padding: 16px 18px; margin-top: 14px; }
+.verdict.size-down, .verdict.size-up { border-left-color: #b7791f; }
+.verdict-headline { font-size: 22px; font-weight: 800; margin: 0; }
+.verdict-reason, .verdict-numbers { margin: 8px 0 0; font-size: 15px; }
+.verdict-numbers { font-size: 13px; color: #5a6478; }
+.result-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.btn { padding: 11px 18px; font: inherit; font-weight: 700; border-radius: 10px; border: 1px solid #1c2333; background: #1c2333; color: #fff; cursor: pointer; }
+.btn-ghost { background: #fff; color: #1c2333; }
+.lookbook-grid .card { cursor: default; }
+.lookbook-grid .card img { aspect-ratio: 1 / 2; object-fit: cover; object-position: top; }
+.lookbook-grid .remove { display: block; width: 100%; border: 0; border-top: 1px solid #e3ded2; background: #fff; padding: 8px; font: inherit; font-size: 13px; color: #b42318; cursor: pointer; }
+.empty { color: #5a6478; }
+.site-footer { border-top: 1px solid #e3ded2; padding: 22px 0 34px; font-size: 13px; color: #5a6478; }
+@media (max-width: 760px) {
+  .how ol { grid-template-columns: 1fr; }
+  .garment-grid, .lookbook-grid { grid-template-columns: repeat(2, 1fr); }
+  .result-pair { grid-template-columns: 1fr; }
+}
