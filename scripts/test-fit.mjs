@@ -20,15 +20,25 @@ const chart = catalog.sizeChart;
 
 check("sweater M is size-down", fitVerdict(g.sweater, "M", chart).verdict, "size-down");
 check("sweater M diff is +8", fitVerdict(g.sweater, "M", chart).diffCm, 8);
+check("sweater M recommends S", fitVerdict(g.sweater, "M", chart).recommendedSize, "S");
+check(
+  "sweater M recommendation names S, not M",
+  fitVerdict(g.sweater, "M", chart).recommendation,
+  "Take size S instead of your usual M."
+);
 check("blazer M is true-to-size", fitVerdict(g.blazer, "M", chart).verdict, "true-to-size");
 check("blazer M diff is +1", fitVerdict(g.blazer, "M", chart).diffCm, 1);
+check("blazer M recommends M", fitVerdict(g.blazer, "M", chart).recommendedSize, "M");
 check("jacket M is size-up", fitVerdict(g.jacket, "M", chart).verdict, "size-up");
 check("jacket M diff is -3", fitVerdict(g.jacket, "M", chart).diffCm, -3);
+check("jacket M recommends L", fitVerdict(g.jacket, "M", chart).recommendedSize, "L");
 check("shirt M is true-to-size", fitVerdict(g.shirt, "M", chart).verdict, "true-to-size");
 check("shirt M diff is +2", fitVerdict(g.shirt, "M", chart).diffCm, 2);
+check("shirt M recommends M", fitVerdict(g.shirt, "M", chart).recommendedSize, "M");
 check("sweater XS is size-down", fitVerdict(g.sweater, "XS", chart).verdict, "size-down");
+check("sweater XS clamps at XS", fitVerdict(g.sweater, "XS", chart).recommendedSize, "XS");
 check("jacket XL is size-up", fitVerdict(g.jacket, "XL", chart).verdict, "size-up");
-check("blazer XL is true-to-size", fitVerdict(g.blazer, "XL", chart).verdict, "true-to-size");
+check("jacket XL clamps at XL", fitVerdict(g.jacket, "XL", chart).recommendedSize, "XL");
 check("unknown size returns null", fitVerdict(g.sweater, "XXL", chart), null);
 check(
   "sweater M reason names both numbers",

@@ -98,32 +98,52 @@ function readBody(req) {
   });
 }
 
-let statusCache = { at: 0, body: null };
-async function handleStatus(res) {
-  const now = Date.now();
-  if (statusCache.body && now - statusCache.at < 60000) {
-    return sendJson(res, 200, statusCache.body);
-  }
-  if (!process.env.CLOTHSY_API_KEY) {
-    const body = { live: false, credits: null, message: "No API key configured on this server." };
-    statusCache = { at: now, body };
-    return sendJson(res, 200, body);
-  }
-  // A key is configured: the server IS live-capable. The credit balance is
-  // best-effort — a slow or failing balance check never reports the server
-  // as dead, because a timeout says nothing about the key's validity.
-  let credits = null;
-  let message = "Live try-on connected.";
+let statusCache = { at: 0, body: null, refreshing: false };
+
+// Refreshes the credit balance in the background. Never blocks a response
+// and never changes the live/dead answer: a key configured means live,
+// whatever the balance check does.
+async function refreshCredits() {
+  if (statusCache.refreshing) return;
+  statusCache.refreshing = true;
   try {
     const account = await clothsy.getAccount();
-    credits =
-      account.creditsRemaining ?? account.credits_remaining ?? account.credits ?? null;
-  } catch (err) {
-    message = "Live try-on connected. Credit balance could not be read just now.";
+    statusCache.body = {
+      live: true,
+      credits:
+        account.creditsRemaining ?? account.credits_remaining ?? account.credits ?? null,
+      message: "Live try-on connected.",
+    };
+    statusCache.at = Date.now();
+  } catch {
+    // Keep the previous body; the balance is best-effort only.
   }
-  const body = { live: true, credits, message };
-  statusCache = { at: now, body };
-  return sendJson(res, 200, body);
+  statusCache.refreshing = false;
+}
+
+function handleStatus(res) {
+  if (!process.env.CLOTHSY_API_KEY) {
+    return sendJson(res, 200, {
+      live: false,
+      credits: null,
+      message: "No API key configured on this server.",
+    });
+  }
+  const now = Date.now();
+  if (
+    statusCache.body &&
+    statusCache.body.live &&
+    now - statusCache.at < 60000 &&
+    statusCache.body.credits !== null
+  ) {
+    return sendJson(res, 200, statusCache.body);
+  }
+  const body =
+    statusCache.body && statusCache.body.live
+      ? statusCache.body
+      : { live: true, credits: null, message: "Live try-on connected." };
+  sendJson(res, 200, body);
+  refreshCredits();
 }
 
 async function handleCreateTryon(req, res) {

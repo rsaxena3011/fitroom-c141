@@ -182,7 +182,7 @@ function showResult({ beforeSrc, afterSrc, caption, meta, verdict }) {
   $("result-meta").textContent = meta;
   const card = $("verdict-card");
   card.className = "verdict " + verdict.verdict;
-  $("verdict-headline").textContent = `${verdict.headline} — take size ${state.size}`;
+  $("verdict-headline").textContent = `${verdict.headline} — ${verdict.recommendation}`;
   $("verdict-reason").textContent = verdict.reason;
   $("verdict-numbers").textContent =
     `Garment chest ${verdict.garmentChestCm} cm · standard for size ${state.size} ${verdict.standardChestCm} cm · difference ${verdict.diffCm >= 0 ? "+" : ""}${verdict.diffCm} cm. ` +
@@ -341,8 +341,15 @@ function saveCurrentToLookbook() {
   if (!r) return;
   const g = garment();
   const items = loadLookbook();
+  const key = `${state.shopperId}|${g.id}|${state.size}|${r.mode}`;
+  if (items.some((x) => x.key === key)) {
+    setStatus("Already in your lookbook.");
+    return;
+  }
   items.unshift({
     id: `${Date.now()}-${g.id}`,
+    key,
+    shopperId: state.shopperId,
     garmentId: g.id,
     garmentName: g.name,
     priceUsd: g.priceUsd,
@@ -383,6 +390,7 @@ async function init() {
       return;
     }
     const blob = await shrinkPhoto(file);
+    if (state.upload) URL.revokeObjectURL(state.upload.dataUrl);
     state.upload = {
       name: file.name,
       blob,

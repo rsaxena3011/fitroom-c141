@@ -10,6 +10,21 @@
 //   diff >= +3  -> "size-down"  (runs large: the garment is roomier than standard)
 //   diff <= -3  -> "size-up"    (runs small: the garment is tighter than standard)
 //   otherwise   -> "true-to-size"
+//
+// The recommendation is the size to TAKE: one size down from usual when the
+// garment runs large, one up when it runs small, usual size when true.
+// At the ends of the size run it clamps (there is no size below XS).
+const SIZE_RUN = ["XS", "S", "M", "L", "XL"];
+
+function oneSizeDown(size) {
+  const i = SIZE_RUN.indexOf(size);
+  return i > 0 ? SIZE_RUN[i - 1] : size;
+}
+
+function oneSizeUp(size) {
+  const i = SIZE_RUN.indexOf(size);
+  return i >= 0 && i < SIZE_RUN.length - 1 ? SIZE_RUN[i + 1] : size;
+}
 export function fitVerdict(garment, size, sizeChart) {
   const standard = sizeChart.standardChestCm[size];
   const chest = garment.chestCm[size];
@@ -17,12 +32,15 @@ export function fitVerdict(garment, size, sizeChart) {
   const diff = chest - standard;
   let verdict;
   let headline;
+  let recommendedSize = size;
   if (diff >= 3) {
     verdict = "size-down";
     headline = "Size down — runs large";
+    recommendedSize = oneSizeDown(size);
   } else if (diff <= -3) {
     verdict = "size-up";
     headline = "Size up — runs small";
+    recommendedSize = oneSizeUp(size);
   } else {
     verdict = "true-to-size";
     headline = "True to size";
@@ -31,9 +49,15 @@ export function fitVerdict(garment, size, sizeChart) {
     diff > 0 ? `${diff} cm roomier than standard` :
     diff < 0 ? `${Math.abs(diff)} cm tighter than standard` :
     "exactly on standard";
+  const recommendation =
+    recommendedSize === size
+      ? `Take your usual size ${size}.`
+      : `Take size ${recommendedSize} instead of your usual ${size}.`;
   return {
     verdict,
     headline,
+    recommendedSize,
+    recommendation,
     diffCm: diff,
     garmentChestCm: chest,
     standardChestCm: standard,
