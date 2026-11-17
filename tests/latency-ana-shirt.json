@@ -1,0 +1,11 @@
+{
+  "shopperId": "ana",
+  "garmentId": "shirt",
+  "garmentName": "Cream Linen Shirt",
+  "tryonId": "4ae3336f-55e8-460d-9785-720c13a0b5a7",
+  "resultUrl": "https://api.clothsyai.fabricvton.com/i/Y213a2F4dnNnMDEybm83MGV2dmJsZjVpcC4xNzk0OTgyNzYw.ngz2T9I7vleCd_J9iQ3uZpZdED8",
+  "latencyMs": 21259,
+  "latencySeconds": 21.3,
+  "ranAt": "2026-11-17T06:19:21Z",
+  "resultFile": "tests/live-ana-shirt.jpg"
+}

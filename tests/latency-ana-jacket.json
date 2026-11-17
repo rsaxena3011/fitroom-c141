@@ -1,0 +1,11 @@
+{
+  "shopperId": "ana",
+  "garmentId": "jacket",
+  "garmentName": "Olive Utility Jacket",
+  "tryonId": "931b503b-004a-497a-a623-c7256684f1e1",
+  "resultUrl": "https://api.clothsyai.fabricvton.com/i/Y213a2F4ZXFnMDEyaW83MGV6OWpsYmwzZC4xNzk0OTgyNzM4.4AjDryo6GYjibbqdTg6S8p469LK",
+  "latencyMs": 20583,
+  "latencySeconds": 20.6,
+  "ranAt": "2026-11-17T06:18:58Z",
+  "resultFile": "tests/live-ana-jacket.jpg"
+}

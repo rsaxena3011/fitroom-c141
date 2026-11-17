@@ -1,0 +1,11 @@
+{
+  "shopperId": "ana",
+  "garmentId": "sweater",
+  "garmentName": "Rust Cable-Knit Sweater",
+  "tryonId": "1666f1ab-aaa6-46d5-b443-b13a6364b5db",
+  "resultUrl": "https://api.clothsyai.fabricvton.com/i/Y213a2F3YjU3MDEyOG83MGVxdWdwd2lxcy4xNzk0OTgyNjg4.43ibbR65vAC13kzGZPN2aZ-SVY3",
+  "latencyMs": 22643,
+  "latencySeconds": 22.6,
+  "ranAt": "2026-11-17T06:18:08Z",
+  "resultFile": "tests/live-ana-sweater.jpg"
+}

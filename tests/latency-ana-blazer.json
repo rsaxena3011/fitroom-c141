@@ -1,0 +1,11 @@
+{
+  "shopperId": "ana",
+  "garmentId": "blazer",
+  "garmentName": "Navy Tailored Blazer",
+  "tryonId": "311e87cf-4767-4c05-b57f-358f636c6302",
+  "resultUrl": "https://api.clothsyai.fabricvton.com/i/Y213a2F3eDlhMDEyZG83MGU5NjZ3YXd3My4xNzk0OTgyNzE2.7SZeGk2YdwscmvqLrAkpFzTDA2m",
+  "latencyMs": 21966,
+  "latencySeconds": 22.0,
+  "ranAt": "2026-11-17T06:18:37Z",
+  "resultFile": "tests/live-ana-blazer.jpg"
+}
